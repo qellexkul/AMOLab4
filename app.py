@@ -4,11 +4,11 @@ import pandas as pd
 # Загрузка данных
 train_df, _ = titanic()
 
-# Чтение данных
-df = pd.read_csv("date/titanic.csv")
 
-# Выбор нужных признаков
-selected_features = df[['Pclass', 'Sex', 'Age']]
+df = pd.read_csv("date/selected_features.csv")
 
-# Сохранение нового датасета
-selected_features.to_csv("date/selected_features.csv", index=False)
+# Заполнение пропущенных значений
+df['Age'].fillna(df['Age'].mean(), inplace=True)
+
+# Сохранение обработанного датасета
+df.to_csv("date/processed_features.csv", index=False)
