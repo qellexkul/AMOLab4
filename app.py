@@ -4,11 +4,11 @@ import pandas as pd
 # Загрузка данных
 train_df, _ = titanic()
 
+# Чтение данных
+df = pd.read_csv("date/processed_features.csv")
 
-df = pd.read_csv("date/selected_features.csv")
+# One-hot encoding для признака Sex
+df = pd.get_dummies(df, columns=['Sex'], drop_first=True)
 
-# Заполнение пропущенных значений
-df['Age'].fillna(df['Age'].mean(), inplace=True)
-
-# Сохранение обработанного датасета
-df.to_csv("date/processed_features.csv", index=False)
+# Сохранение нового датасета
+df.to_csv("date/final_dataset.csv", index=False)
